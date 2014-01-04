@@ -61,6 +61,10 @@ static int    read_ux3_value     OF((ZCONST uch *dbuf, unsigned uidgid_sz,
                                      ulg *p_uidgid));
 #endif /* IZ_HAVE_UXUIDGID */
 
+#ifdef ANDROID
+#include <wchar.h>
+int wctomb(char *s, wchar_t wc) { return wcrtomb(s,wc,NULL); }
+#endif
 
 static ZCONST char Far CannotAllocateBuffers[] =
   "error:  cannot allocate unzip buffers\n";
